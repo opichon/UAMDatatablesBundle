@@ -12,7 +12,7 @@
 		}
 	],
 	"autoload": {
-		"psr-0": { "UAM\\Bundle\\UAMDatatablesBundle": "" }
+		"psr-0": { "UAM\\Bundle\\DatatablesBundle": "" }
 	},
-	"target-dir": "UAM/Bundle/UAMDatatablesBundle"
+	"target-dir": "UAM/Bundle/DatatablesBundle"
 }

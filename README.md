@@ -3,7 +3,7 @@ UAMDatatablesBundle
 
 A symfony 2 bundle that provides a convenient way to include the [dataTables](http://www.datatables.net/) jquery plugin in your symfony 2 apps.
 
-This bundle includes release 1.9.4 of the dataTables plugin's assets, including the bootstrap-related additions.
+This bundle includes release 1.9.4 of the dataTables plugin. It also includes the plugin's bootstrap-related additions.
 
 Installation
 ------------

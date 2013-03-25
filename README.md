@@ -71,7 +71,7 @@ If you use assetic, you need to declare the UAMDatatablesBundle in your config f
 Licence
 -------
 
-This bundle is licensed un the MIT license.
+This bundle is licensed under the MIT license.
 
 The dataTables jquery plugin is licensed under the MIT license.
 

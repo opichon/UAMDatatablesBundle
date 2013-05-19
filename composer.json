@@ -1,18 +1,24 @@
 {
-	"name": "uam/datatables-bundle",
-	"description": "Datatables jquery plugin packaged as a Symfony bundle",
-	"keywords": ["datatables", "jquery", "bootstrap", "symfony", "bundle"],
-	"homepage": "https://github.com/opichon/uam-datatables-bundle",
-	"type": "symfony-bundle",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Olivier Pichon",
-			"email": "op@united-asian.com"
-		}
-	],
-	"autoload": {
-		"psr-0": { "UAM\\Bundle\\DatatablesBundle": "" }
-	},
-	"target-dir": "UAM/Bundle/DatatablesBundle"
+    "name": "uam/datatables-bundle",
+    "description": "Datatables jquery plugin packaged as a Symfony bundle",
+    "keywords": ["datatables", "jquery", "bootstrap", "symfony", "bundle"],
+    "homepage": "https://github.com/opichon/uam-datatables-bundle",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Olivier Pichon",
+            "email": "op@united-asian.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "UAM\\Bundle\\DatatablesBundle": "" }
+    },
+    "target-dir": "UAM/Bundle/DatatablesBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+
 }

@@ -1,10 +1,10 @@
 {
 	"name": "uam/datatables-bundle",
-	"description": "Datatables jquery plubin as a Symfony bundle",
+	"description": "Datatables jquery plugin packaged as a Symfony bundle",
 	"keywords": ["datatables", "jquery", "bootstrap", "symfony", "bundle"],
-	"homepage": "http://gitweb.united-asian.com",
-	"type": "library",
-	"license": "proprietary",
+	"homepage": "https://github.com/opichon/uam-datatables-bundle",
+	"type": "symfony-bundle",
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Olivier Pichon",

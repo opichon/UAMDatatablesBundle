@@ -1,6 +1,6 @@
 {
   "sProcessing": "Merci de patienter...",
-  "sLengthMenu": "Afficher _MENU_ enregistrements par page",
+  "sLengthMenu": "Afficher _MENU_ enregistrements",
   "sZeroRecords": "Aucun enregistrement trouvé.",
   "sInfo": "Enregistrements _START_ à _END_ sur _TOTAL_",
   "sInfoEmpty": "Aucun enregistrement trouvé",

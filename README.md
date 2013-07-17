@@ -8,7 +8,7 @@ This bundle includes release 1.9.4 of the dataTables plugin. It also includes th
 Installation
 ------------
 
-### Step 1: Download UAMDatatablesrBundle using composer
+### Step 1: Download UAMDatatablesBundle using composer
 
 Add UAMDatatablesBundle in your composer.json:
 
@@ -52,19 +52,19 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new UAM\Bundle\DatatablesBundle(),
+        new UAM\Bundle\UAMDatatablesBundle(),
     );
 }
 ```
 
-The dataTables plugin's assets are now available under the`web/bundles/uamdatatables` directory.
+The dataTables plugin's assets are now available under the `web/bundles/uamdatatables` directory.
 
 Usage
 -----
 
 To learn how to use the dataTables jquery plugin itself, see the plugin's home page at [http://www.datatables.net](http://datatables.net).
 
-To use the bundle, simply include the bundle's assets in your templates like you would any other bundle.
+To use the bundle itself, simply include the bundle's assets in your templates like you would any other bundle.
 
 If you use assetic, you need to declare the UAMDatatablesBundle in your config file's `assetic` section.
 

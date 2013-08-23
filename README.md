@@ -26,19 +26,7 @@ Now tell composer to download the bundle by running the command:
 $ php composer.phar update uam/datatables-bundle
 ```
 
-Composer will install the bundle to your project's `vendor/uam/datatables-bundle` directory.
-
-If your composer.json does not include the post-install or post-update `installAssets` script handler, then run the following command:
-
-``` bash
-$ php app/console assets:install
-```
-
-or 
-
-``` bash
-$ php app/console assets:install --symlink
-```
+Composer will install the bundle in your project's `vendor/uam/datatables-bundle` directory.
 
 ### Step 2: Enable the bundle
 
@@ -57,14 +45,26 @@ public function registerBundles()
 }
 ```
 
-The dataTables plugin's assets are now available under the `web/bundles/uamdatatables` directory.
+### Step 3 (optional): Instsall the bundle's assets
+
+If your composer.json does not include the post-install or post-update `installAssets` script handler, then run the following command:
+
+``` bash
+$ php app/console assets:install
+```
+
+or 
+
+``` bash
+$ php app/console assets:install --symlink
+```
 
 Usage
 -----
 
 To learn how to use the dataTables jquery plugin itself, see the plugin's home page at [http://www.datatables.net](http://datatables.net).
 
-To use the bundle itself, simply include the bundle's assets in your templates like you would any other bundle.
+To use the bundle itself, simply include the bundle's assets in your templates like you would any other bundle. The dataTables plugin's assets are available under the `web/bundles/uamdatatables` directory.
 
 If you use assetic, you need to declare the UAMDatatablesBundle in your config file's `assetic` section.
 

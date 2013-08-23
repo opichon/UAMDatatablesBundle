@@ -80,6 +80,6 @@ Copyright
 
 This bundle is copyright [United Asian Management Limited](http://www.united-asian-management.com).
 
-The dataTables jquery plugin is copyright [Allan Jardin (www.sprymedia.co.uk)](http://www.sprymedia.co.uk).
+The dataTables jquery plugin is copyright [Allan Jardine (www.sprymedia.co.uk)](http://www.sprymedia.co.uk).
 
 All rights reserved by their respective copyright holders.

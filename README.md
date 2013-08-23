@@ -52,7 +52,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new UAM\Bundle\UAMDatatablesBundle(),
+        new UAM\Bundle\DatatablesBundle\UAMDatatablesBundle(),
     );
 }
 ```

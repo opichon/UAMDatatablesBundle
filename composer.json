@@ -11,6 +11,9 @@
             "email": "op@united-asian.com"
         }
     ],
+    "require": {
+        "symfony/framework-bundle": "~2.0"
+    },
     "autoload": {
         "psr-0": { "UAM\\Bundle\\DatatablesBundle": "" }
     },

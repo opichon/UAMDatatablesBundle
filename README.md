@@ -45,7 +45,7 @@ public function registerBundles()
 }
 ```
 
-### Step 3 (optional): Instsall the bundle's assets
+### Step 3 (optional): Install the bundle's assets
 
 If your composer.json does not include the post-install or post-update `installAssets` script handler, then run the following command:
 

@@ -4,7 +4,7 @@
   "sZeroRecords": "No records found.",
   "sInfo": "Records _START_ to _END_ out of _TOTAL_",
   "sInfoEmpty": "No records found.",
-  "sInfoFiltered": "(filtre appliqué sur _MAX_ enregistrements)",
+  "sInfoFiltered": "(filtered out of _MAX_ records)",
   "sInfoPostFix": "",
   "sSearch": "Search",
   "sUrl": "",

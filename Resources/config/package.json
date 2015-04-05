@@ -1,0 +1,10 @@
+{
+	"devDependencies": {
+		"gulp": "^3.8",
+		"gulp-bower": "^0.0.10",
+		"gulp-install": "^0.1",
+		"gulp-jsmin": "^0.1",
+		"gulp-rename": "^1.1",
+		"main-bower-files": "^2.4"
+	}
+}

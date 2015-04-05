@@ -1,0 +1,44 @@
+{
+	"name": "uam/datatables-bundle",
+	"dependencies": {
+		"bootstrap": "*",
+		"datatables": "~1.10",
+		"datatables-plugins": "*",
+		"font-awesome": "*",
+		"jquery": "~1.11"
+	},
+	"overrides": {
+		"bootstrap": {
+		  	"main": [
+		  		"dist/css/*",
+		  		"dist/fonts/*",
+		  		"dist/js/*"
+			]
+		},
+		"datatables": {
+			"main": [
+				"media/css/*",
+				"media/js/*"
+			]
+		},
+		"datatables-plugins": {
+			"main": [
+				"integration/bootstrap/3/dataTables.bootstrap.css",
+				"integration/bootstrap/3/dataTables.bootstrap.js",
+				"integration/bootstrap/3/dataTables.bootstrap.min.js",
+				"integration/font-awesome/dataTables.fontAwesome.css"
+			]
+		},
+		"font-awesome": {
+			"main": [
+				"./css/*",
+				"./fonts/*"
+			]
+		},
+		"jquery": {
+			"main": [
+				"dist/*"
+			]
+		}
+	}
+}

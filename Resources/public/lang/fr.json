@@ -1,0 +1,16 @@
+{
+	"info": "Enregistrements _START_ à _END_ sur _TOTAL_",
+	"infoEmpty": "Aucun enregistrement trouvé",
+	"infoFiltered": "(filtre appliqué sur _MAX_ enregistrements)",
+	"infoPostFix": "",
+	"lengthMenu": "Afficher _MENU_ enregistrements",
+	"paginate": {
+		"first":    "Début",
+		"previous": "Précédent",
+		"next":     "Suivant",
+		"last":     "Fin"
+	},
+	"processing": "Merci de patienter...",
+	"search": "Rechercher",
+	"zeroRecords": "Aucun enregistrement trouvé."
+}

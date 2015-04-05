@@ -1,0 +1,16 @@
+{
+	"info": "Records _START_ to _END_ out of _TOTAL_",
+	"infoEmpty": "No records found.",
+	"infoFiltered": "(filter applied to _MAX_ records)",
+	"infoPostFix": "",
+	"lengthMenu": "Display _MENU_ records",
+	"paginate": {
+		"first":    "First",
+		"previous": "Previous",
+		"next":     "Next",
+		"last":     "Last"
+	},
+	"processing": "Please wait...",
+	"search": "Search",
+	"zeroRecords": "No records found."
+}

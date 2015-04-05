@@ -15,9 +15,8 @@
         "symfony/framework-bundle": "~2.0"
     },
     "autoload": {
-        "psr-0": { "UAM\\Bundle\\DatatablesBundle": "" }
+        "psr-4": { "UAM\\Bundle\\DatatablesBundle\\": "" }
     },
-    "target-dir": "UAM/Bundle/DatatablesBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "2.1.x-dev"

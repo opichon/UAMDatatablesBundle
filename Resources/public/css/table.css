@@ -50,6 +50,10 @@ table.table thead tr.filters th .form-control {
 	font-weight: normal;
 }
 
+table.table thead tr.filters input.date {
+	display: none;
+}
+
 .table tr.disabled td,
 .table tr.disabled a {
 	background-color: #eee;
@@ -108,24 +112,4 @@ div.dataTables_processing {
 	-webkit-box-shadow: 0px 5px 90px #888;
 	box-shadow: 0px 5px 90px #888;
 	z-index: 999;
-}
-
-ul.pagination li.previous a:before {
-	font-family: FontAwesome;
-	content: "\f053";
-	margin-right: 10px;
-}
-
-ul.pagination li.next a:after {
-	font-family: FontAwesome;
-	content: "\f054";
-	margin-left: 10px;
-}
-
-tr.filters input.form-control {
-	width: 100%;
-}
-
-.filters input.date {
-	display: none;
 }

@@ -1,22 +1,45 @@
-table.table {
+table.dataTable {
 	display: none;
 }
 
-table.table th,
+table.table.noajax {
+	display: table;
+}
+
+table.table > thead > tr > th,
 table.table td {
 	border-top: none;
 	border-bottom: 1px solid #ddd;
+	padding: 5px 2px;
+	font-weight: normal;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
-table.table thead th,
-table.table thead .sorting,
-table.table thead .sorting_asc,
-table.table thead .sorting_desc,
-table.table thead .sorting_asc_disabled,
-table.table thead .sorting_desc_disabled {
-	vertical-align: bottom;
+table.table > thead > tr > th {
 	background-color: #f1f6e0;
 	font-weight: normal;
+}
+
+table.table-condensed thead th,
+table.table-condensed.dataTable thead > tr > th {
+	padding: 5px;
+}
+
+table.table tbody tr:hover td,
+table.table tbody tr:hover td a,
+table.table tbody tr:hover th {
+	color: #535353;
+	background-color: #FFF6BF;
+}
+
+table.table > tbody > tr > td {
+	border-bottom: 1px solid #ddd;
+	border-top: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 table.table .center {
@@ -38,6 +61,7 @@ table.table th.actions {
 
 table.table td.actions {
 	text-align: center;
+	overflow: visible;
 }
 
 table.table thead tr.filters th {
@@ -60,10 +84,8 @@ table.table thead tr.filters input.date {
 	color: #aaa;
 }
 
-.table-hover > tbody > tr:hover > td,
-.table-hover > tbody > tr:hover > th {
-	color: #535353;
-	background-color: #FFF6BF;
+table.dataTable thead th.sorting:after {
+	color: #333;
 }
 
 table.table td.actions button.dropdown-toggle {

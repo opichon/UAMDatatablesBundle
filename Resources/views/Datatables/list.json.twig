@@ -1,0 +1,13 @@
+{% spaceless %}
+{
+    "draw": "{{ app.request.query.all.draw }}",
+    "recordsTotal": {{ total_count }},
+    "recordsFiltered": {{ filtered_count }},
+    "data" : [
+        {% for entity in entities %}
+            {% block data %}
+            {% endblock %}{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}
+{% endspaceless %}

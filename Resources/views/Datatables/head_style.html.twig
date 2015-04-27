@@ -1,0 +1,12 @@
+{% block uamdatatables_head_style %}
+	{% block uamdatatables_stylesheets %}
+		{% stylesheets filter="cssrewrite"
+			'bundles/uamdatatables/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css'
+			'bundles/uamdatatables/vendor/datatables-plugins/integration/font-awesome/dataTables.fontAwesome.css'
+			'bundles/uamdatatables/css/table.css'
+		%}
+			<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+		{% endstylesheets %}
+	{% endblock %}
+	{% block uamdatatables_extra_stylesheets %}{% endblock %}
+{% endblock %}

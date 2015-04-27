@@ -15,7 +15,7 @@ Add UAMDatatablesBundle in your composer.json:
 ```js
 {
     "require": {
-        "uam/datatables-bundle": "*"
+        "uam/datatables-bundle": "~2.1"
     }
 }
 ```
@@ -53,7 +53,7 @@ If your composer.json does not include the post-install or post-update `installA
 $ php app/console assets:install
 ```
 
-or 
+or
 
 ``` bash
 $ php app/console assets:install --symlink

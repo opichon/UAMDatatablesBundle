@@ -1,14 +1,18 @@
-var gulp = require('gulp');
 var bower = require('gulp-bower');
-var mainBowerFiles = require('main-bower-files');
+var gulp = require('gulp');
 var jsmin = require('gulp-jsmin');
+var mainBowerFiles = require('main-bower-files');
 var rename = require('gulp-rename');
 
 gulp.task('bower', function() {
 	bower();
 });
 
-gulp.task('bower-files', ['bower'], function() {
+gulp.task('bower-prune', ['bower'], function() {
+	return bower({ cmd: 'prune' })
+});
+
+gulp.task('bower-files', ['bower-prune'], function() {
 	return gulp.src(mainBowerFiles(), { base: 'bower_components' })
 		.pipe(gulp.dest('../public/vendor'));
 

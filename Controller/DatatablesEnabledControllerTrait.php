@@ -4,15 +4,31 @@ namespace UAM\Bundle\DatatablesBundle\Controller;
 
 use ModelCriteria;
 use PropelCollection;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @Template()
+ */
 trait DatatablesEnabledControllerTrait
 {
     public function indexAction(Request $request)
     {
-        return array();
+        $parameters = array();
+
+    	if ($filter_type = $this->getFilterType()) {
+    		$filter = $this->createForm($filter_type);
+
+        	$parameters['filter'] = $filter->createView();
+        }
+
+        return array_merge(
+            $this->getExtraTemplateParameters($request),
+            $parameters
+        );
     }
+
 
     public function listAction(Request $request)
     {
@@ -39,10 +55,13 @@ trait DatatablesEnabledControllerTrait
 
         $entities = $this->processEntities($entities, $request);
 
-        return array(
-            'total_count' => $total_count,
-            'filtered_count' => $filtered_count,
-            'entities' => $entities
+        return array_merge(
+            $this->getExtraTemplateParameters($request),
+            array(
+                'total_count' => $total_count,
+                'filtered_count' => $filtered_count,
+                'entities' => $entities
+            )
         );
     }
 
@@ -55,6 +74,11 @@ trait DatatablesEnabledControllerTrait
     abstract protected function getSortColumns(Request $request);
 
     abstract protected function getDefaultSortOrder(Request $request);
+
+    protected function getFilterType()
+    {
+        return null;
+    }
 
     protected function getLimit(Request $request)
     {

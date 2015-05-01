@@ -9,10 +9,10 @@
 	},
 	"overrides": {
 		"bootstrap": {
-		  	"main": [
-		  		"dist/css/*",
-		  		"dist/fonts/*",
-		  		"dist/js/*"
+			"main": [
+				"dist/css/*",
+				"dist/fonts/*",
+				"dist/js/*"
 			]
 		},
 		"datatables": {

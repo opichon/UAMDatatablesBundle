@@ -90,7 +90,7 @@ The bundle currently includes the following assets:
 * dataTables/bootstrap integration plugin
 * dataTables/font-awesome integration plugin
 
-The bundle also includes a [DatatablesEnabledControllerTrait](Resources/docs/controller.md) and associated assets to help you design pages that list DB-entities using dataTables.
+The bundle also includes a [DatatablesEnabledControllerTrait](Resources/docs/DatatablesEnabledContollerTrait.md) and associated assets to help you design pages that list DB-entities using dataTables.
 
 How it works
 -------------

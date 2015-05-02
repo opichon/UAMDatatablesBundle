@@ -68,6 +68,7 @@ trait DatatablesEnabledControllerTrait
     /**
      * Defines the conditions for filtering the database records. This method
      * must return an array of SQL conditions indexed by filter name. For example:
+     *
      *    return array(
      *        'name' => array(
      *            'Person.Surname LIKE "%%%s%%"',
@@ -82,7 +83,9 @@ trait DatatablesEnabledControllerTrait
      * with the query definedin the getListQuery method.
      *
      * @param Request $request The current request
+     *
      * @return Array
+     *
      * @see search
      */
     abstract protected function getSearchColumns(Request $request);
@@ -90,6 +93,7 @@ trait DatatablesEnabledControllerTrait
     /**
      * Defines the conditions for sorting the database records. The return value must be
      * an array of column names indexed by column number. For example:
+     *
      *     return array(
      *         1 => array(
      *             'Person.Name',
@@ -103,7 +107,9 @@ trait DatatablesEnabledControllerTrait
      * are expected to be consistent with the Propel query defined in getListQuery.
      *
      * @param Request $request the current request
+     *
      * @return Array
+     *
      * @see getSortOrder
      */
     abstract protected function getSortColumns(Request $request);
@@ -113,7 +119,9 @@ trait DatatablesEnabledControllerTrait
      * must return an array.
      *
      * @param Request $request the current request
+     *
      * @return Array
+     *
      * @see getSortOrder, sort
      */
     abstract protected function getDefaultSortOrder(Request $request);
@@ -129,7 +137,9 @@ trait DatatablesEnabledControllerTrait
      * parameters passed to the template in the `index` and `list` actions.
      *
      * @param Request $request the current request
+     *
      * @return Array
+     *
      * @see indexAction, listAction
      */
     protected function getExtraTemplateParameters(Request $request)
@@ -138,17 +148,17 @@ trait DatatablesEnabledControllerTrait
     }
 
     /**
-    * Defines the form type to be used to create custom filters on the page.
-    * These filters are typically used as per-column filters and displayed in
-    * each column header.
-    *
-    * If this methods returns a non-null value, a form will be automatically
-    * created by the `index` action and passed to the template as a parameter
-    * named `filter`. You can then use this parameter in your `index.html.twig`
-    * template to render the form's widgets.
-    *
-    * @param Request $request the current request
-    */
+     * Defines the form type to be used to create custom filters on the page.
+     * These filters are typically used as per-column filters and displayed in
+     * each column header.
+     *
+     * If this methods returns a non-null value, a form will be automatically
+     * created by the `index` action and passed to the template as a parameter
+     * named `filter`. You can then use this parameter in your `index.html.twig`
+     * template to render the form's widgets.
+     *
+     * @param Request $request the current request
+     */
     protected function getFilterType(Request $request)
     {
         return;
@@ -183,6 +193,7 @@ trait DatatablesEnabledControllerTrait
      * Returns the default limit.
      *
      * @param Request $request the current request
+     *
      * @return 10
      */
     protected function getDefaultLimit(Request $request)
@@ -195,6 +206,7 @@ trait DatatablesEnabledControllerTrait
      * to avoid overburdening the server.
      *
      * @param Request $request the current request
+     *
      * @return 100
      */
     protected function getMaxLimit(Request $request)
@@ -206,6 +218,7 @@ trait DatatablesEnabledControllerTrait
      * Returns the default offset value.
      *
      * @param Request $request the current request
+     *
      * @return 0;
      */
     protected function getDefaultOffset(Request $request)

@@ -5,7 +5,6 @@ namespace UAM\Bundle\DatatablesBundle\Controller;
 use ModelCriteria;
 use PropelCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -17,10 +16,10 @@ trait DatatablesEnabledControllerTrait
     {
         $parameters = array();
 
-    	if ($filter_type = $this->getFilterType()) {
-    		$filter = $this->createForm($filter_type);
+        if ($filter_type = $this->getFilterType()) {
+            $filter = $this->createForm($filter_type);
 
-        	$parameters['filter'] = $filter->createView();
+            $parameters['filter'] = $filter->createView();
         }
 
         return array_merge(
@@ -28,7 +27,6 @@ trait DatatablesEnabledControllerTrait
             $parameters
         );
     }
-
 
     public function listAction(Request $request)
     {
@@ -60,7 +58,7 @@ trait DatatablesEnabledControllerTrait
             array(
                 'total_count' => $total_count,
                 'filtered_count' => $filtered_count,
-                'entities' => $entities
+                'entities' => $entities,
             )
         );
     }
@@ -77,7 +75,7 @@ trait DatatablesEnabledControllerTrait
 
     protected function getFilterType()
     {
-        return null;
+        return;
     }
 
     protected function getLimit(Request $request)
@@ -169,7 +167,6 @@ trait DatatablesEnabledControllerTrait
         }
 
         return $this;
-
     }
 
     protected function getSortOrder(Request $request)

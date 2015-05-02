@@ -178,9 +178,11 @@ class EntityController extends Controller
 The index.html.twig template
 ----------------------------
 
-The `index.html.twig` template shoudl display the table's structure (headers and empty body). It should also include the relevant datatables assets. For convenience, the UAMDatatablesBundle includes some partials that can be included in the `index` template:
+The `index.html.twig` template shoudl display the table's structure (headers and empty body). It should also include the relevant datatables assets. For convenience, the UAMDatatablesBundle provides some partials that can be included in the `index` template:
 
 ``` twig
+{# index.html.twig #}
+
 {% include "UAMDatatablesBundle:Datatables:head_style.html.twig" %}
 
 {# template content here #}

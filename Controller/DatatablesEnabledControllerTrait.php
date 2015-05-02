@@ -16,7 +16,7 @@ trait DatatablesEnabledControllerTrait
     {
         $parameters = array();
 
-        if ($filter_type = $this->getFilterType()) {
+        if ($filter_type = $this->getFilterType($request)) {
             $filter = $this->createForm($filter_type);
 
             $parameters['filter'] = $filter->createView();
@@ -65,44 +65,170 @@ trait DatatablesEnabledControllerTrait
 
     abstract protected function getListQuery(Request $request);
 
-    abstract protected function getFilters(Request $request);
-
+    /**
+     * Defines the conditions for filtering the database records. This method
+     * must return an array of SQL conditions indexed by filter name. For example:
+     *    return array(
+     *        'name' => array(
+     *            'Person.Surname LIKE "%%%s%%"',
+     *            'Person.GivenNames LIKE "%%%s%%"'
+     *        ),
+     *        'email' => 'Person.Email LIKE "%%%s%%"'
+     *    );
+     *
+     * This method is invoked by the search method. The array keys are expected
+     * to match the name of a widget in the filter type used on the page. The
+     * array values are expected to be Propel SQL conditions that are consistent
+     * with the query definedin the getListQuery method.
+     *
+     * @param Request $request The current request
+     * @return Array
+     * @see search
+     */
     abstract protected function getSearchColumns(Request $request);
 
+    /**
+     * Defines the conditions for sorting the database records. The return value must be
+     * an array of column names indexed by column number. For example:
+     *     return array(
+     *         1 => array(
+     *             'Person.Name',
+     *             'Person.GivenNames'
+     *         )
+     *         2 => 'Person.Email'
+     *     );
+     *
+     * This method is invoked by the getSortOrder method. The array keys are
+     * expected to match the indexes of cou,ns in the table. The array values
+     * are expected to be consistent with the Propel query defined in getListQuery.
+     *
+     * @param Request $request the current request
+     * @return Array
+     * @see getSortOrder
+     */
     abstract protected function getSortColumns(Request $request);
 
+    /**
+     * Defines the default sort order to apply to the database records. The method
+     * must return an array.
+     *
+     * @param Request $request the current request
+     * @return Array
+     * @see getSortOrder, sort
+     */
     abstract protected function getDefaultSortOrder(Request $request);
 
-    protected function getFilterType()
+    protected function getFilters(Request $request)
+    {
+        return $request->query->get('_search');
+    }
+
+    /**
+     * Defines a collection of additional parameters to be passed to the template.
+     * The parameters defined in this method's reurn value will be added to the
+     * parameters passed to the template in the `index` and `list` actions.
+     *
+     * @param Request $request the current request
+     * @return Array
+     * @see indexAction, listAction
+     */
+    protected function getExtraTemplateParameters(Request $request)
+    {
+        return array();
+    }
+
+    /**
+    * Defines the form type to be used to create custom filters on the page.
+    * These filters are typically used as per-column filters and displayed in
+    * each column header.
+    *
+    * If this methods returns a non-null value, a form will be automatically
+    * created by the `index` action and passed to the template as a parameter
+    * named `filter`. You can then use this parameter in your `index.html.twig`
+    * template to render the form's widgets.
+    *
+    * @param Request $request the current request
+    */
+    protected function getFilterType(Request $request)
     {
         return;
     }
 
+    /**
+     * @param Request $request the current request
+     */
     protected function getLimit(Request $request)
     {
-        return min(100, $request->query->get('length', $this->getDefaultLimit()));
+        return min(
+            $this->getMaxLimit($request),
+            $request->query->get(
+                'length',
+                $this->getDefaultLimit($request)
+            )
+        );
     }
 
+    /**
+     * @param Request $request the current request
+     */
     protected function getOffset(Request $request)
     {
-        return max($request->query->get('start', 0), $this->getDefaultOffset());
+        return max(
+            $request->query->get('start', 0),
+            $this->getDefaultOffset($request)
+        );
     }
 
-    protected function getDefaultLimit()
+    /**
+     * Returns the default limit.
+     *
+     * @param Request $request the current request
+     * @return 10
+     */
+    protected function getDefaultLimit(Request $request)
     {
         return 10;
     }
 
-    protected function getDefaultOffset()
+    /**
+     * Defines the maximum value for the query limit. This is a safety feature
+     * to avoid overburdening the server.
+     *
+     * @param Request $request the current request
+     * @return 100
+     */
+    protected function getMaxLimit(Request $request)
+    {
+        return 100;
+    }
+
+    /**
+     * Returns the default offset value.
+     *
+     * @param Request $request the current request
+     * @return 0;
+     */
+    protected function getDefaultOffset(Request $request)
     {
         return 0;
     }
 
+    /**
+     * Defines some optional processing of entities before they are passed to
+     * the template. This method is invoked in the `listAction` after the
+     * query has been run and before the entities are passed to the template.
+     *
+     * @param Request $request the current request
+     */
     protected function processEntities(PropelCollection $entities, Request $request)
     {
         return $entities;
     }
 
+    /**
+     * Filters the database records. This method should be considered final for
+     * all practical purposes.
+     */
     protected function search(ModelCriteria $query, Request $request)
     {
         $filters = $this->getFilters($request);
@@ -156,6 +282,10 @@ trait DatatablesEnabledControllerTrait
         }
     }
 
+    /**
+     * Sorts the database records. This method should be considered final for
+     * all practical purposes.
+     */
     protected function sort(ModelCriteria $query, Request $request)
     {
         $order = $this->getSortOrder($request);
@@ -169,6 +299,14 @@ trait DatatablesEnabledControllerTrait
         return $this;
     }
 
+    /**
+     * Computes the sort order. This method should be considered final for
+     * all practical purposes.
+     *
+     * @param Request $request the current request
+     *
+     * @return Array
+     */
     protected function getSortOrder(Request $request)
     {
         $sort = array();

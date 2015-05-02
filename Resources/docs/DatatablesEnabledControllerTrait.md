@@ -175,6 +175,44 @@ class EntityController extends Controller
 }
 ```
 
+The index.html.twig template
+----------------------------
+
+The `index.html.twig` template shoudl display the table's structure (headers and empty body). It should also include the relevant datatables assets. For convenience, the UAMDatatablesBundle includes some partials that can be included in the `index` template:
+
+``` twig
+{% include "UAMDatatablesBundle:Datatables:head_style.html.twig" %}
+
+{# template content here #}
+
+{% include "UAMDatatablesBundle:Datatables:foot_script.html.twig" %}
+```
+
+The list.json.twig template
+---------------------------
+
+The `list.json.twig` template contains the record data in JSON format. It should extend the UAMDatatablesBundle's `list.json.twig` template. You only need to override the `data` block. This block defines the data for each database record. Each row is available as a variable named `entity`.
+
+``` twig
+{# list.json.twig #}
+
+{% block data %}
+{% spaceless %}
+{
+	{% set person = entity %}
+	
+	"DT_RowId": "{{ 'person_' ~ person.id }}",
+	"DT_RowClass": "{{ 'person' }}",
+	
+	"id": {{ person.id }},
+	"surname": "{{ person.surname }}",
+	"given_names": "{{ person.givenNames }}",
+	"email": "{{ person.email }}"
+}
+{% endspaceless %}
+{% endblock %}
+```
+
 Sorting
 -------
 

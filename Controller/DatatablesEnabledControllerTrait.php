@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @copyright 2015 United Asian Management Limited. All rights reserved.
+ * @license MIT
+ */
 namespace UAM\Bundle\DatatablesBundle\Controller;
 
 use ModelCriteria;
@@ -8,10 +12,24 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
+ * Provides convenience methods for implementing an index page listing database
+ * records as entities using the dataTables jquery plugin with server-side data.
+ *
  * @Template()
  */
 trait DatatablesEnabledControllerTrait
 {
+    /**
+     * Index action. Displays the table structure (headers and empty body).
+     *
+     * @param Request $request Thecurrent request
+     * @return Array An array of template parameters. These include:
+     * * `filter`: If {@see DatatablesEnabledControllerTrait::getFilterType()} returns a non-null value, the form based on this type
+     * * If {@see DatatablesEnabledControllerTrait::getExtraTemplateParameters()} returns a non-empty array, these parameters are
+     * included
+     * @uses DatatablesEnabledControllerTrait::getFilterType()
+     * @uses DatatablesEnabledControllerTrait::getExtraTemplateParameters()
+     */
     public function indexAction(Request $request)
     {
         $parameters = array();
@@ -28,6 +46,17 @@ trait DatatablesEnabledControllerTrait
         );
     }
 
+    /**
+     * List action. Returns the records data in JSON format. This action is the target
+     * of the dataTables plugin's ajax request for obtaining server-side data.
+     *
+     * @param Request $request the current request
+     * @return Array An array of template parameters. These include:
+     * * `entities`: the PropelCollection or array of entities returned by the Propel query
+     * * `total_count`: the total number of records (before any filters are applied)
+     * * `filtered_count`: the number of records after filters are applied
+     * @uses getLimit()
+     */
     public function listAction(Request $request)
     {
         $query = $this->getListQuery($request);
@@ -63,12 +92,19 @@ trait DatatablesEnabledControllerTrait
         );
     }
 
+    /**
+     * Returns the Propel query to be used to retrieve records from the database,
+     *
+     * @param Request $request the current request
+     * @return ModelCriteria The Propel query to use for retrieving records in the database
+     */
     abstract protected function getListQuery(Request $request);
 
     /**
      * Defines the conditions for filtering the database records. This method
      * must return an array of SQL conditions indexed by filter name. For example:
      *
+     * ```
      *    return array(
      *        'name' => array(
      *            'Person.Surname LIKE "%%%s%%"',
@@ -76,6 +112,7 @@ trait DatatablesEnabledControllerTrait
      *        ),
      *        'email' => 'Person.Email LIKE "%%%s%%"'
      *    );
+     * ```
      *
      * This method is invoked by the search method. The array keys are expected
      * to match the name of a widget in the filter type used on the page. The
@@ -83,10 +120,8 @@ trait DatatablesEnabledControllerTrait
      * with the query definedin the getListQuery method.
      *
      * @param Request $request The current request
-     *
-     * @return Array
-     *
-     * @see search
+     * @return Array the search conditions
+     * @see DatatablesEnabledControllerTrait::search()
      */
     abstract protected function getSearchColumns(Request $request);
 
@@ -94,6 +129,7 @@ trait DatatablesEnabledControllerTrait
      * Defines the conditions for sorting the database records. The return value must be
      * an array of column names indexed by column number. For example:
      *
+     * ```
      *     return array(
      *         1 => array(
      *             'Person.Name',
@@ -101,16 +137,15 @@ trait DatatablesEnabledControllerTrait
      *         )
      *         2 => 'Person.Email'
      *     );
+     * ```
      *
      * This method is invoked by the getSortOrder method. The array keys are
      * expected to match the indexes of cou,ns in the table. The array values
      * are expected to be consistent with the Propel query defined in getListQuery.
      *
      * @param Request $request the current request
-     *
-     * @return Array
-     *
-     * @see getSortOrder
+     * @return Array the search conditions
+     * @see DatablesEnabledControllerTrait::getSortOrder()
      */
     abstract protected function getSortColumns(Request $request);
 
@@ -119,13 +154,18 @@ trait DatatablesEnabledControllerTrait
      * must return an array.
      *
      * @param Request $request the current request
-     *
-     * @return Array
-     *
-     * @see getSortOrder, sort
+     * @return Array the default sort order
+     * @see DatatablesEnabledControllerTrait::getSortOrder()
+     * @see DatatablesEnabledControllerTrait::sort()
      */
     abstract protected function getDefaultSortOrder(Request $request);
 
+    /**
+     * Extracts the filters from the request's query parameters.
+     *
+     * @param Request $request the current request
+     * @return Array the query parameters containng the filters
+     */
     protected function getFilters(Request $request)
     {
         return $request->query->get('_search');
@@ -137,10 +177,9 @@ trait DatatablesEnabledControllerTrait
      * parameters passed to the template in the `index` and `list` actions.
      *
      * @param Request $request the current request
-     *
-     * @return Array
-     *
-     * @see indexAction, listAction
+     * @return Array additional parameters to be passed to the template
+     * @see DatablesEnabledControllerTrait::indexAction()
+     * @see DatablesEnabledControllerTrait::listAction()
      */
     protected function getExtraTemplateParameters(Request $request)
     {
@@ -158,6 +197,7 @@ trait DatatablesEnabledControllerTrait
      * template to render the form's widgets.
      *
      * @param Request $request the current request
+     * @return FormType|null the form type for creating filters
      */
     protected function getFilterType(Request $request)
     {
@@ -165,7 +205,10 @@ trait DatatablesEnabledControllerTrait
     }
 
     /**
+     * Defines the limit for the Propel query.
+     *
      * @param Request $request the current request
+     * @return int the propel query limit
      */
     protected function getLimit(Request $request)
     {
@@ -179,7 +222,10 @@ trait DatatablesEnabledControllerTrait
     }
 
     /**
+     * Defines the offset for the Propel query.
+     *
      * @param Request $request the current request
+     * @return int the propel query offset
      */
     protected function getOffset(Request $request)
     {
@@ -193,8 +239,7 @@ trait DatatablesEnabledControllerTrait
      * Returns the default limit.
      *
      * @param Request $request the current request
-     *
-     * @return 10
+     * @return int 10
      */
     protected function getDefaultLimit(Request $request)
     {
@@ -206,8 +251,7 @@ trait DatatablesEnabledControllerTrait
      * to avoid overburdening the server.
      *
      * @param Request $request the current request
-     *
-     * @return 100
+     * @return int 100
      */
     protected function getMaxLimit(Request $request)
     {
@@ -218,8 +262,7 @@ trait DatatablesEnabledControllerTrait
      * Returns the default offset value.
      *
      * @param Request $request the current request
-     *
-     * @return 0;
+     * @return int 0;
      */
     protected function getDefaultOffset(Request $request)
     {
@@ -231,7 +274,9 @@ trait DatatablesEnabledControllerTrait
      * the template. This method is invoked in the `listAction` after the
      * query has been run and before the entities are passed to the template.
      *
+     * @param PropelCollection $entities the result of the propel query
      * @param Request $request the current request
+     * @return PropelCollection|Array the processed entities
      */
     protected function processEntities(PropelCollection $entities, Request $request)
     {
@@ -241,6 +286,9 @@ trait DatatablesEnabledControllerTrait
     /**
      * Filters the database records. This method should be considered final for
      * all practical purposes.
+     *
+     * @param ModelCriteria $query the Propel query
+     * @param Request $request the current request
      */
     protected function search(ModelCriteria $query, Request $request)
     {
@@ -298,6 +346,10 @@ trait DatatablesEnabledControllerTrait
     /**
      * Sorts the database records. This method should be considered final for
      * all practical purposes.
+     *
+     * @param ModelCriteria $query the Propel query
+     * @param Request $request the current request
+     * @return ModelCriteria the Propel query
      */
     protected function sort(ModelCriteria $query, Request $request)
     {
@@ -309,7 +361,7 @@ trait DatatablesEnabledControllerTrait
             $query->orderBy($column, $direction);
         }
 
-        return $this;
+        return $query;
     }
 
     /**
@@ -317,8 +369,7 @@ trait DatatablesEnabledControllerTrait
      * all practical purposes.
      *
      * @param Request $request the current request
-     *
-     * @return Array
+     * @return Array the sort order
      */
     protected function getSortOrder(Request $request)
     {

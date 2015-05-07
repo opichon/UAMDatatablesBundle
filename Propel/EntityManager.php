@@ -124,7 +124,7 @@ abstract class EntityManager implements EntityManagerInterface
             ->setOffset($offset)
             ->find();
 
-        return $this->processEntities($entities, $request);        
+        return $this->processEntities($entities, $request);
     }
 
     /**
@@ -339,5 +339,5 @@ abstract class EntityManager implements EntityManagerInterface
         }
 
         return $sort;
-    }    
+    }
 }

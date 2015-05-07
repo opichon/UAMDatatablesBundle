@@ -109,5 +109,4 @@ trait DatatablesEnabledControllerTrait
     {
         return;
     }
-
 }

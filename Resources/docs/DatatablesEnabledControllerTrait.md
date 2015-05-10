@@ -195,7 +195,7 @@ class EntityController extends Controller
 
 ### The `list` action
 
-The `DatatablesEnabledControllerTrait` adds a `list` action to your controller. This action is reposible for returning the JSON-formatted record data in response to the dataTables plugin's ajax request.
+The `DatatablesEnabledControllerTrait` adds a `list` action to your controller. This action is reponsible for returning the JSON-formatted record data in response to the dataTables plugin's ajax request.
 
 Most of the time, you shouldn't have to override this method. Override the other convenience methods in the controller and entity manager class instead.
 

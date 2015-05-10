@@ -55,13 +55,13 @@ This method should return a propel query object that will be used to retrieve th
 
 This method should return an array of SQL criteria.
 
-If you are using the default searching provided by the dataTables plugin (single search widget), then the array keys are arbitrary. 
+If you are using the default searching provided by the dataTables plugin (single search widget), then the array keys are arbitrary.
 
 If you are using per-column or multiple filters, then the array keys should be the names of the filter widgets on the page (i.e. the widgets defined in the form type returned by `getFilterType` method).
 
 The array values should be Propel SQL conditions that are consistent with the Propel query defined in the getListQuery method.
 
-For complex searching, the array value can be an array of conditions. These conditions will be OR'ed. 
+For complex searching, the array value can be an array of conditions. These conditions will be OR'ed.
 
 ``` php
 return array(
@@ -122,7 +122,7 @@ Define the default value for the SQL offset. Current value is 0.
 
 Provides some optional processing of the entities returned by the Propel query before they are passed to the template.
 
-#### getExtraTemplateParameters 
+#### getExtraTemplateParameters
 
 Allows you to pass some additional parameters to the template in the `index` and `list` actions.
 
@@ -164,11 +164,11 @@ This method should return an instance of the entty manager class you defined ear
 
 ### The `index` action
 
-The `DatatablesEnabledControllerTrait` adds an `index` action to your controller. THis action is responsible for displaying the `index.html.twig` template, which contains the table structured (table headers, footers, and empty body). 
+The `DatatablesEnabledControllerTrait` adds an `index` action to your controller. This action is responsible for displaying the `index.html.twig` template, which contains the table structure (table headers, footers, and empty body).
 
-Most of the time, you shouldn't have to override the is method. Override the other convenience methods in the controller and entity manager class instead. 
+Most of the time, you shouldn't have to override this method. Override the other convenience methods in the controller and entity manager class instead.
 
-However, if you like to define your routes via annotations in the controller, then you can override the actions as follows:
+However, if you like to define your routes via annotations in the controller, then you can override the actions as follows (the route name and url are entirely up to you, of course):
 
 ``` php
 
@@ -195,11 +195,11 @@ class EntityController extends Controller
 
 ### The `list` action
 
-The `DatatabelsEnabledControllerTrait` adds a `list` action to your controller. This action is reposible for returning the JSON_formatted record data in response to the `dataTables` plugin's ajax request.
+The `DatatablesEnabledControllerTrait` adds a `list` action to your controller. This action is reposible for returning the JSON-formatted record data in response to the dataTables plugin's ajax request.
 
-Most of the time, you shouldn't have to override this method. Override the other convenience methods in the controller and entity manager class instead. 
+Most of the time, you shouldn't have to override this method. Override the other convenience methods in the controller and entity manager class instead.
 
-However, if you like to define your routes via annotations on the controller action method, then you can override this method as follows:
+However, if you like to define your routes via annotations on the controller action method, then you can override this method as follows (the route name and url are up to you, of course):
 
 ``` php
 
@@ -211,6 +211,7 @@ use UAM\Bundle\DatatablesBundle\Controller\DatatablesEnabledControllerTrait;
 class EntityController extends Controller
 {
     use DatatablesEnabledControllerTrait {
+        listAction as baseListAction;
     }
 
     /**
@@ -226,7 +227,7 @@ class EntityController extends Controller
 The `index.html.twig` template
 ------------------------------
 
-The `index.html.twig` template should display the table's structure (headers and empty body). It should also include the relevant datatables assets. For convenience, the UAMDatatablesBundle provides some partials that can be included in the `index` template:
+The `index.html.twig` template should display the table's structure (headers, footers and empty body). It should also include the relevant datatables assets. For convenience, the UAMDatatablesBundle provides some partials that can be included in the `index` template:
 
 ``` twig
 {# index.html.twig #}
@@ -250,10 +251,10 @@ The `list.json.twig` template contains the record data in JSON format. It should
 {% spaceless %}
 {
 	{% set person = entity %}
-	
+
 	"DT_RowId": "{{ 'person_' ~ person.id }}",
 	"DT_RowClass": "{{ 'person' }}",
-	
+
 	"id": {{ person.id }},
 	"surname": "{{ person.surname }}",
 	"given_names": "{{ person.givenNames }}",
@@ -266,7 +267,7 @@ The `list.json.twig` template contains the record data in JSON format. It should
 Javascript logic
 ----------------
 
-To tie everything together, your page needs some javascript logic. By default, this is provided as the `uamdatatables.js` jquery plugin. Include the following snippet in your `index.html.twig` template: 
+To tie everything together, your page needs some javascript logic. By default, this is provided as the `uamdatatables.js` jquery plugin. Include the following snippet in your `index.html.twig` template:
 
 ``` javascript
 <script>
@@ -286,6 +287,19 @@ var uamdatatables: {
 Only the `ajax.url` option is required. The `columnDefs` and `columns` options are only required if you return object data in the `list.json.twig` template. Other options supported by the `dataTables` plugin can be included here.
 
 IMPORTANT: You need to add the `uamdatatables` CSS class to a top-level element in your page for the `uamdatatables` jquery plugin to work. This top-level element must be an ancestor of the table used by the `dataTables` plugin.
+
+Alternatively, you can invoke the javascript logic as follows:
+
+``` javascript
+<script>
+$( document ).ready(function ( e ) {
+    $( ".someclass" ).uamdatatables({
+        ajax: "{{ path('route_to_list_action') }}",
+        // ...
+    });
+});
+</script>
+```
 
 Sorting
 -------

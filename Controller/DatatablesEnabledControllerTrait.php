@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 trait DatatablesEnabledControllerTrait
 {
     abstract protected function getEntityManager();
-    
+
     /**
      * Index action. Displays the table structure (headers and empty body).
      *

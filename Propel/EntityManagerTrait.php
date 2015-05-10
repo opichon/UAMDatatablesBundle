@@ -2,17 +2,11 @@
 
 namespace UAM\Bundle\DatatablesBundle\Propel;
 
-/**
- * @deprecated
- * @see AbstractEntityManager
- * @see EntityManagerTrait
- */
 use ModelCriteria;
 use PropelCollection;
 use Symfony\Component\HttpFoundation\Request;
-use UAM\Bundle\DatatablesBundle\Model\EntityManagerInterface;
 
-abstract class EntityManager implements EntityManagerInterface
+trait EntityManagerTrait
 {
     /**
      * Returns the Propel query to be used to retrieve records from the database,

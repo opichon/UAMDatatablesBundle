@@ -40,6 +40,12 @@
       "main": [
         "dist/*"
       ]
+    },
+    "mustache": {
+    	"main": [
+    		"mustache.js",
+    		"mustache.min.js"
+    	]
     }
   }
 }

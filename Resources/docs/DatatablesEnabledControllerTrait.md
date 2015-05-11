@@ -279,12 +279,13 @@ var uamdatatables: {
 	],
 	columns: [
 		// your column definitions (see Datatables documentation)
-	]
+	],
+    locale: "{{ app.request.locale }}"
 };
 </script>
 ```
 
-Only the `ajax.url` option is required. The `columnDefs` and `columns` options are only required if you return object data in the `list.json.twig` template. Other options supported by the `dataTables` plugin can be included here.
+Only the `ajax.url` and `locale` options are required. The `columnDefs` and `columns` options are only required if you return object data in the `list.json.twig` template. Other options supported by the `dataTables` plugin can be included here.
 
 IMPORTANT: You need to add the `uamdatatables` CSS class to a top-level element in your page for the `uamdatatables` jquery plugin to work. This top-level element must be an ancestor of the table used by the `dataTables` plugin.
 
@@ -295,6 +296,7 @@ Alternatively, you can invoke the javascript logic as follows:
 $( document ).ready(function ( e ) {
     $( ".someclass" ).uamdatatables({
         ajax: "{{ path('route_to_list_action') }}",
+        locale: "{{ app.request.locale }}"
         // ...
     });
 });

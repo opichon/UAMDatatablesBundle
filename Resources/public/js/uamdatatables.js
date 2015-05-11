@@ -35,7 +35,10 @@
 						},
 						initComplete: function( settings, json ) {
 							$( this ).show();
-						}
+						},
+						language: {
+							url: "/bundles/uamdatatables/lang/" + settings.locale + ".json"
+						},
 					} ) );
 				});
 			}
@@ -54,14 +57,12 @@
 
 	$.fn.uamdatatables.defaults = {
 		autoWidth: false,
-		language: {
-			url: "/bundles/uamdatatables/lang/" + uam.editor.locale + ".json"
-		},
 		orderable: true,
 		orderCellsTop: true,
-		searching: false,
+		locale: "en",
 		paging: true,
 		processing: true,
+		searching: false,
 		serverSide: true,
 		stripeClasses: []
 	};

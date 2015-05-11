@@ -1,5 +1,5 @@
 **/bower_components
 **/node_modules
-phpdoc.xml
-Resources/docs/phpdoc
-vendor
+/phpdoc.xml
+/Resources/docs/phpdoc
+/vendor

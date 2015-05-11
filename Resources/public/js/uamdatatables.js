@@ -22,24 +22,28 @@
 						table.api().draw();
 					});
 
-					table = $( "table.table", this ).dataTable( $.extend( true, {}, settings, {
-						ajax: {
-							data: function( data ) {
-								$( ".filters input, .filters select" ).each(function() {
-									var name = $( this ).attr( "name" ),
-										value = $( this ).val();
+					table = $( "table.table", this ).dataTable( $.extend(
+						true,
+						{
+							ajax: {
+								data: function( data ) {
+									$( ".filters input, .filters select" ).each(function() {
+										var name = $( this ).attr( "name" ),
+											value = $( this ).val();
 
-									data[name] = value;
-								} );
+										data[name] = value;
+									} );
+								}
+							},
+							initComplete: function( settings, json ) {
+								$( this ).show();
+							},
+							language: {
+								url: "/bundles/uamdatatables/vendor/datatables-plugins/i18n/" + settings.locale + ".json"//
 							}
 						},
-						initComplete: function( settings, json ) {
-							$( this ).show();
-						},
-						language: {
-							url: "/bundles/uamdatatables/vendor/datatables-plugins/i18n/" + settings.locale + ".json"
-						},
-					} ) );
+						settings
+					) );
 				});
 			}
 		};

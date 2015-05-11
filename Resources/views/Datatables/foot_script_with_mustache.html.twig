@@ -1,0 +1,13 @@
+{% block uamdatatables_foot_script %}
+	{% block uamdatatables_javascripts %}
+		{% javascripts
+			'bundles/uamdatatables/vendor/datatables/media/js/jquery.dataTables.min.js'
+			'bundles/uamdatatables/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js'
+			'bundles/uamdatatables/vendor/mustache/mustache.min.js'
+			'bundles/uamdatatables/js/uamdatatables.js'
+		%}
+			<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% endblock %}
+	{% block uamdatatables_extra_javascripts %}{% endblock %}
+{% endblock %}

@@ -37,7 +37,7 @@
 							$( this ).show();
 						},
 						language: {
-							url: "/bundles/uamdatatables/lang/" + settings.locale + ".json"
+							url: "/bundles/uamdatatables/vendor/datatables-plugins/i18n/" + settings.locale + ".json"
 						},
 					} ) );
 				});

@@ -254,14 +254,19 @@ The `index.html.twig` template should display the table's structure (headers, fo
 
 ``` twig
 {# index.html.twig #}
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "UAMDatatablesBundle:Datatables:head_style.html.twig" %}
+</head>
+<body>
+	{# template content here #}
 
-{% include "UAMDatatablesBundle:Datatables:head_style.html.twig" %}
-
-{# template content here #}
-
-{% include "UAMDatatablesBundle:Datatables:foot_script.html.twig" %}
-{# or #}
-{% include "UAMDatatablesBundle:Datatables:foot_script_with_mustache.html.twig" %}
+	{% include "UAMDatatablesBundle:Datatables:foot_script.html.twig" %}
+	{# or #}
+	{% include "UAMDatatablesBundle:Datatables:foot_script_with_mustache.html.twig" %}
+</body>
+</html>
 ```
 
 The `list.json.twig` template
@@ -271,6 +276,7 @@ The `list.json.twig` template contains the record data in JSON format. It should
 
 ``` twig
 {# list.json.twig #}
+{% extends "UAMDatatablesBundle:Datatables:list.json.twig" %}
 
 {% block data %}
 {% spaceless %}

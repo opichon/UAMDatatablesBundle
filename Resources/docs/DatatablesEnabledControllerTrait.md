@@ -98,7 +98,7 @@ return array(
 
 #### getDefaultSortOrder
 
-This methods returns the sort order to apply when no sorting has been selectd by the user. The method should return an array of arrays, where each second-level array contains  elements: the column name and the sort direction.
+This methods returns the sort order to apply when no sorting has been selectd by the user. The method should return an array of arrays, where each second-level array contains  2 elements: the column name and the sort direction.
 
 ``` php
 return array(
@@ -211,7 +211,7 @@ class EntityController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->indeAction($request);
+        return $this->indexAction($request);
     }
 }
 ```
@@ -260,6 +260,8 @@ The `index.html.twig` template should display the table's structure (headers, fo
 {# template content here #}
 
 {% include "UAMDatatablesBundle:Datatables:foot_script.html.twig" %}
+{# or #}
+{% include "UAMDatatablesBundle:Datatables:foot_script_with_mustache.html.twig" %}
 ```
 
 The `list.json.twig` template
@@ -287,6 +289,24 @@ The `list.json.twig` template contains the record data in JSON format. It should
 {% endblock %}
 ```
 
+The `head_style.html.twig` template
+-----------------------------------
+
+This template is a partial that contains all the stylesheets required by the `index.html.twig` template. 
+
+The `foot_script.html.twig` template
+------------------------------------
+
+This template is a partial that contains all the external script files required by the `index.html.twig` template.
+
+The `foot_script_with_mustache.html.twig` template
+--------------------------------------------------
+
+This template is a partial that includes all the external scripts already included in the `foot_script.html.twig` template, but adds `mustache.min.js`.
+
+Mustache.js is useful when processing the json data returned by the `list` action. 
+
+
 Javascript logic
 ----------------
 
@@ -299,6 +319,7 @@ var uamdatatables: {
 		url: "{{ path('route_to_list_action') }}",
 	},
 	columnDefs: [
+		// optional; use the `columns` option instead
 	],
 	columns: [
 		// your column definitions (see Datatables documentation)
@@ -309,6 +330,9 @@ var uamdatatables: {
 ```
 
 Only the `ajax.url` and `locale` options are required. The `columnDefs` and `columns` options are only required if you return object data in the `list.json.twig` template. Other options supported by the `dataTables` plugin can be included here.
+
+The `locale` option is not an offical option of the dataTables plugin. If set, it will automatically set the dataTables plugin's `language.url` option as `"/bundles/uamdatatables/vendor/datatables-plugins/i18n/" + settings.locale + ".json"`. Naturally, you can override this.
+
 
 IMPORTANT: You need to add the `uamdatatables` CSS class to a top-level element in your page for the `uamdatatables` jquery plugin to work. This top-level element must be an ancestor of the table used by the `dataTables` plugin.
 
@@ -339,6 +363,6 @@ To enable searching, simply implement the `getSearchColumns` in your entity mana
 To implement per-column filters, you will need to do the following:
 
 * create a form type to define the filters
-* implement the `getFilterType` method in your entity manager class to return an isntance of this type. The `index` action will generate a form based on this form type and will pass its view to the `index.html.twig` template as a parameter named `filter`.
-* alternatively, you can implement the `getFilter` method in your entity manager; the `index` action will return a view based on this form and pass to to the `index.html.twig` template as a parameter named `filter`.
-* update your `index.html.twig` template and render the filter's widgets in the relevant location (e.g. the table header cells for per-column filtering).
+* implement the `getFilterType` method in your entity manager class to return an instance of this type. The `index` action will generate a form based on this form type and will pass its view to the `index.html.twig` template as a parameter named `filter`.
+* alternatively, you can override the `getFilter` method in your controller; the `index` action will return a view based on this form and pass to to the `index.html.twig` template as a parameter named `filter`.
+* update your `index.html.twig` template and render the filter's widgets in the relevant location (e.g. the table header cells).

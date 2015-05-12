@@ -39,7 +39,7 @@
 								$( this ).show();
 							},
 							language: {
-								url: "/bundles/uamdatatables/vendor/datatables-plugins/i18n/" + settings.locale + ".json"//
+								url: "/bundles/uamdatatables/vendor/datatables-plugins/i18n/" + settings.locale + ".json"
 							}
 						},
 						settings
@@ -61,12 +61,12 @@
 
 	$.fn.uamdatatables.defaults = {
 		autoWidth: false,
-		orderable: true,
-		orderCellsTop: true,
 		locale: "en",
+		ordering: true,
+		orderCellsTop: true,
 		paging: true,
 		processing: true,
-		searching: false,
+		searching: true,
 		serverSide: true,
 		stripeClasses: []
 	};

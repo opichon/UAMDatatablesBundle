@@ -34,9 +34,7 @@ trait DatatablesEnabledControllerTrait
     {
         $parameters = array();
 
-        if ($filter_type = $this->getFilterType($request)) {
-            $filter = $this->createForm($filter_type);
-
+        if ($filter = $this->getFilter($request)) {
             $parameters['filter'] = $filter->createView();
         }
 
@@ -93,20 +91,18 @@ trait DatatablesEnabledControllerTrait
     }
 
     /**
-     * Defines the form type to be used to create custom filters on the page.
-     * These filters are typically used as per-column filters and displayed in
-     * each column header.
-     *
-     * If this methods returns a non-null value, a form will be automatically
-     * created by the `index` action and passed to the template as a parameter
-     * named `filter`. You can then use this parameter in your `index.html.twig`
-     * template to render the form's widgets.
+     * Returns a form that will be used by the `index` action to create a view
+     * which is then passed to the `index.html.twig` template as a parameter
+     * named `filter`.
      *
      * @param Request $request the current request
-     * @return FormType|null the form type for creating filters
+     * @return Symfony\Component\Form\FormInterface|null a form
+     * @uses EntityManagerInterface::getFilterType
      */
-    protected function getFilterType(Request $request)
+    protected function getFilter(Request $request)
     {
-        return;
+        if ($filter_type = $this->getEntityManager()->getFilterType($request)) {
+            return $this->createForm($filter_type);
+        }
     }
 }

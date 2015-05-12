@@ -133,6 +133,14 @@ abstract class EntityManager implements EntityManagerInterface
     }
 
     /**
+     * @inheritdoc
+     */
+    public function getFilterType(Request $request)
+    {
+
+    }
+
+    /**
      * Extracts the filters from the request's query parameters.
      *
      * @param Request $request the current request

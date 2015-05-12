@@ -127,6 +127,14 @@ trait EntityManagerTrait
     }
 
     /**
+     * @inheritdoc
+     */
+    public function getFilterType(Request $request)
+    {
+        return;
+    }
+
+    /**
      * Extracts the filters from the request's query parameters.
      *
      * @param Request $request the current request
@@ -134,6 +142,9 @@ trait EntityManagerTrait
      */
     protected function getFilters(Request $request)
     {
+        if ($type = $this->getFilterType($request)) {
+            return $request->query->get($type->getName());
+        }
         return $request->query->get('_search');
     }
 

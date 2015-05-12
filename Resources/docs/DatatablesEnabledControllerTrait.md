@@ -4,15 +4,17 @@ DatatablesEnabledControllerTrait
 Requirements
 ------------
 
-* Propel
+The `DatatablesEnabledControllerTrait` itself is ORM-agnostic, as it relies on the `EntityManagerInterface`.
+
+However, at this point the only implementation provided is for the Propel ORM. You app should therefore include the PropelBundle (~1.4).
 
 Usage
-----
+-----
 
 * Create an entity manager
 * In your controller:
 	* Use the `DatatablesEnabledControllerTrait` in your controller
-	* Implement the `getEntitymanager` method; it shoudl return ana instance of your entity manager class defined above
+	* Implement the `getEntitymanager` method; it should return an instance of your entity manager class defined above
 * Create your `index.html.twig` template
 * Create your `list.json.twig` template
 * Create your javascript logic
@@ -23,8 +25,8 @@ The entity manager
 
 The entity manager is reponsible for retrieving records form the database. You can either:
 
-* extend the `UAM\Bundle\DatatablesBundle\Propel\AbstractEntityManager` class, or:
-* use the `UAM\Bundle\DatatablesBundle\Propel\EntityManagerTrait` in your own entity manager class.
+* extend the `Propel\AbstractEntityManager` class, or:
+* use the `Propel\EntityManagerTrait` in your own entity manager class.
 
 Naturally, you can define your entity manager instance as a service.
 
@@ -43,6 +45,7 @@ Optionally, if need be, you can override the following methods:
 * `getDefaultOffset`
 * `processEntities`
 * `getExtraTemplateParameters`
+* `getFilter`
 * `getFilterType`
 
 ### Abstract methods that need to be implemented
@@ -95,6 +98,19 @@ return array(
 
 #### getDefaultSortOrder
 
+This methods returns the sort order to apply when no sorting has been selectd by the user. The method should return an array of arrays, where each second-level array contains  elements: the column name and the sort direction.
+
+``` php
+return array(
+	array(
+		'Person.Surname', 'asc'
+	),
+	array(
+		'Person.GivenNames', 'asc'
+	)
+);
+```
+
 ### Other methods that may be overridden if required
 
 The `DatatablesEnabledControllerTrait` defines a number of convenience methods that you can override if required:
@@ -103,7 +119,10 @@ The `DatatablesEnabledControllerTrait` defines a number of convenience methods t
 
 Defines the query parameters that holding the search criteria.
 
-The default value is `_search`, which is the name of the dataTables plugin's default search widget.
+The default implementation will return the query parameter named:
+
+* if the `getFilterType` method returns a non-null value, the `name` of the returned form type.
+* otherwise `_search`, which is the name of the dataTables plugin's default search widget.
 
 #### getDefaultLimit
 
@@ -161,6 +180,10 @@ class EntityController extends Controller
 ### Implement the `getEntityManager` method
 
 This method should return an instance of the entty manager class you defined earlier. If you;ve defined it as a service, just return the service from the container.
+
+### Optionnally, override the `getFilter` method
+
+By default, this method will create a form based on the value returned by the entty manager's `getFilterType ` method. The `index` action will create a view based on this form and pass it to the `index.html.twig` template as the `filter` parameter.
 
 ### The `index` action
 
@@ -311,12 +334,11 @@ The enable sorting, simply implement the `getSortColumns` and `getDefaultsortOrd
 Searching
 ---------
 
-To enable searching, simply implement the `getSearchColumns` in yhour entity manager class.
+To enable searching, simply implement the `getSearchColumns` in your entity manager class.
 
 To implement per-column filters, you will need to do the following:
 
 * create a form type to define the filters
-* implement the `getFilterType` method in your entity manager class to return an isntance of this type.
-* update your `index.html.twig` template and render the filter's widgets in the relevant header cells.
-
-The `Datatables EnabledControllerTrait`'s `index` action will automatically include a form based on the filters form type defined above as a parameter named `filter` in the `index.html.twig` template.
+* implement the `getFilterType` method in your entity manager class to return an isntance of this type. The `index` action will generate a form based on this form type and will pass its view to the `index.html.twig` template as a parameter named `filter`.
+* alternatively, you can implement the `getFilter` method in your entity manager; the `index` action will return a view based on this form and pass to to the `index.html.twig` template as a parameter named `filter`.
+* update your `index.html.twig` template and render the filter's widgets in the relevant location (e.g. the table header cells for per-column filtering).

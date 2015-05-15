@@ -1,51 +1,43 @@
 {
   "name": "uam/datatables-bundle",
   "dependencies": {
-    "bootstrap": "*",
-    "datatables": "~1.10",
-    "datatables-plugins": "*",
-    "font-awesome": "*",
-    "jquery": "~1.11",
-    "mustache": "~2.0"
+  "datatables": "~1.10",
+  "datatables-plugins": "*",
+  "mustache": "~2.0"
   },
   "overrides": {
-    "bootstrap": {
-      "main": [
-        "dist/css/*",
-        "dist/fonts/*",
-        "dist/js/*"
-      ]
-    },
     "datatables": {
       "main": [
-        "media/css/*",
-        "media/js/*"
+      "media/css/*",
+      "media/js/*"
       ]
     },
     "datatables-plugins": {
       "main": [
+        "i18n/*.json",
         "integration/bootstrap/3/dataTables.bootstrap.css",
         "integration/bootstrap/3/dataTables.bootstrap.js",
         "integration/bootstrap/3/dataTables.bootstrap.min.js",
-        "integration/font-awesome/dataTables.fontAwesome.css"
-      ]
-    },
-    "font-awesome": {
-      "main": [
-        "./css/*",
-        "./fonts/*"
+        "integration/font-awesome/dataTables.fontAwesome.css",
+        "integration/foundation/dataTables.foundation.css",
+        "integration/foundation/dataTables.foundation.js",
+        "integration/foundation/dataTables.foundation.min.js",
+        "integration/foundation/images/*",
+        "integration/jqueryui/dataTables.jqueryui.css",
+        "integration/jqueryui/dataTables.jqueryui.js",
+        "integration/jqueryui/dataTables.jqueryui.min.js",
+        "pagination/*.js",
+        "pagination/jPaginator/*.js"
       ]
     },
     "jquery": {
-      "main": [
-        "dist/*"
-      ]
+      "ignore": true
     },
     "mustache": {
-    	"main": [
-    		"mustache.js",
-    		"mustache.min.js"
-    	]
+      "main": [
+        "mustache.js",
+        "mustache.min.js"
+      ]
     }
   }
 }

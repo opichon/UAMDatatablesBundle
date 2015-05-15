@@ -20,7 +20,8 @@ gulp.task('bower-files', ['bower-prune'], function() {
 
 gulp.task('minify', ['bower-files'], function() {
 	return gulp.src([
-			'../public/vendor/datatables-plugins/**/*.js',
+			'../public/vendor/datatables-plugins/pagination/*.js',
+			'../public/vendor/datatables-plugins/pagination/jPaginator/*.js',
 			'!../public/vendor/**/*min.js'
 		], { base: '../public/vendor' })
 		.pipe(jsmin())

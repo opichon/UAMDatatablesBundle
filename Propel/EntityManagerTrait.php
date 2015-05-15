@@ -145,7 +145,7 @@ trait EntityManagerTrait
         if ($type = $this->getFilterType($request)) {
             return $request->query->get($type->getName());
         }
-        return $request->query->get('_search');
+        return $request->query->get('search')['value'];
     }
 
 

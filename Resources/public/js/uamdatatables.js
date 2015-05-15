@@ -73,5 +73,5 @@
 } ( window.jQuery );
 
 $( document ).ready(function() {
-	$( ".uamdatatables" ).uamdatatables( uamdatatables );
+	$( ".uamdatatables" ).uamdatatables( "undefined" === typeof uamdatatables ? {} : uamdatatables );
 });

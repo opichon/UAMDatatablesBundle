@@ -1,0 +1,146 @@
+table.dataTable {
+	display: none;
+}
+
+table.table.noajax {
+	display: table;
+}
+
+table.table > thead > tr > th,
+table.table td {
+	border-top: none;
+	border-bottom: 1px solid #ddd;
+	padding: 5px 2px;
+	font-weight: normal;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+table.table > thead > tr > th {
+	background-color: #f1f6e0;
+	font-weight: normal;
+}
+
+table.table-condensed thead th,
+table.table-condensed.dataTable thead > tr > th {
+	padding: 5px;
+}
+
+table.table tbody tr:hover td,
+table.table tbody tr:hover td a,
+table.table tbody tr:hover th {
+	color: #535353;
+	background-color: #FFF6BF;
+}
+
+table.table > tbody > tr > td {
+	border-bottom: 1px solid #ddd;
+	border-top: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+table.table .center {
+	text-align: center;
+}
+
+table.table th.date {
+	width: 6em;
+}
+
+table.table th.datetime {
+	width: 9em;
+}
+
+table.table th.actions {
+	text-align: center;
+	width: 36px;
+}
+
+table.table td.actions {
+	text-align: center;
+	overflow: visible;
+}
+
+table.table td.number {
+	padding-right: 15px;
+	text-align: right;
+}
+
+table.table thead tr.filters th {
+	padding: 5px 1px;
+}
+
+table.table thead tr.filters th .form-control {
+	width: 100%;
+	padding: 6px;
+	font-weight: normal;
+}
+
+table.table thead tr.filters input.date {
+	display: none;
+}
+
+.table tr.disabled td,
+.table tr.disabled a {
+	background-color: #eee;
+	color: #aaa;
+}
+
+table.dataTable thead th.sorting:after {
+	color: #333;
+}
+
+table.table td.actions button.dropdown-toggle {
+	border: none;
+	background: transparent;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+table.table td.actions .dropdown-menu {
+	margin-top: 0;
+}
+
+table.table td.actions .dropdown-menu > li > a {
+	text-align: left;
+}
+
+table.table tr:hover td.actions .dropdown-menu > li > a {
+	background-color: #fff;
+}
+
+table.table tr td.actions .dropdown-menu > li > a:hover {
+	color: #fff;
+	background-color: #ddd;
+}
+
+div.dataTables_processing {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 250px;
+	height: 50px;
+	margin-left: -125px;
+	margin-top: -15px;
+	padding: 14px 0 2px 0;
+	border: 1px solid #e2b709;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	text-align: center;
+	color: #999;
+	font-size: 115%;
+	background: #ffe57e;
+	-moz-box-shadow: 0px 5px 90px #888;
+	-webkit-box-shadow: 0px 5px 90px #888;
+	box-shadow: 0px 5px 90px #888;
+	z-index: 999;
+}
+
+.uamdatatables .mustache {
+	display: none;
+}

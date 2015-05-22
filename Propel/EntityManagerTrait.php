@@ -250,11 +250,20 @@ trait EntityManagerTrait
 
         if (is_array($filters)) {
             foreach ($columns as $name => $condition) {
-                if (!array_key_exists($name, $filters)) {
-                    continue;
+                $items = explode('.', $name);
+                $i = 0;
+                $values = $filters;
+
+                while (is_array($values) && array_key_exists($items[$i], $values)) {
+                    $values = $values[$items[$i]];
+                    $i++;
                 }
 
-                $value = trim($filters[$name]);
+                if (is_array($values)) {
+                    return;
+                } else {
+                    $value = trim($values);
+                }
 
                 if (empty($value) && !is_numeric($value)) {
                     continue;

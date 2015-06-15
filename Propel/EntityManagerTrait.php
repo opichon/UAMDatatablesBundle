@@ -143,7 +143,11 @@ trait EntityManagerTrait
     protected function getFilters(Request $request)
     {
         if ($type = $this->getFilterType($request)) {
-            return $request->query->get($type->getName());
+            return $request->query->get(
+                is_string($type)
+                    ? $type
+                    : $type->getName()
+            );
         }
 
         return $request->query->get('search')['value'];

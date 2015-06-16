@@ -264,7 +264,7 @@ trait EntityManagerTrait
                 }
 
                 if (is_array($values)) {
-                    return;
+                    continue;
                 } else {
                     $value = trim($values);
                 }

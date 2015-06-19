@@ -13,7 +13,7 @@ Add the bundle to your project's `composer.json`:
 ```json
 {
     "require": {
-        "uam/datatables-bundle": "~2.1",
+        "uam/datatables-bundle": "~3.0",
         ...
     }
 }
@@ -101,7 +101,7 @@ Adding more assets
 If you need more dataTables assets than are currently included, follow this procedure:
 
 * Fork the bundle
-* Customize the bower configuration file (`Resources/config/bower.json`): 
+* Customize the bower configuration file (`Resources/config/bower.json`):
 	* Add the assets you require in the `overrides|datatables-plugins|main` section
 	* Remove assets you do not require from the `overrides` section
 * Run `gulp` from the bundle's `Resources\config` directory

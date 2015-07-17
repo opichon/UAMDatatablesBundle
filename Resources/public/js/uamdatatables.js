@@ -22,6 +22,10 @@
 						table.api().draw();
 					});
 
+					$( ".filters :checkbox" ).change(function() {
+						table.api().draw();
+					});
+
 					table = $( "table.table", this ).dataTable( $.extend(
 						true,
 						{
@@ -29,7 +33,10 @@
 								data: function( data ) {
 									$( ".filters input, .filters select" ).each(function() {
 										var name = $( this ).attr( "name" ),
-											value = $( this ).val();
+											value = $( this ).attr( "type" ) == "checkbox"
+												? ($( this ).is( ":checked" ) ? $( this ).val() : 0)
+												: $( this ).val();
+
 
 										data[name] = value;
 									} );

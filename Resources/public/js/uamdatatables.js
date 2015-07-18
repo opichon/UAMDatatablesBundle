@@ -37,7 +37,6 @@
 												? ($( this ).is( ":checked" ) ? $( this ).val() : 0)
 												: $( this ).val();
 
-
 										data[name] = value;
 									} );
 								}

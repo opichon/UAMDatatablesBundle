@@ -22,10 +22,6 @@
 						table.api().draw();
 					});
 
-					$( ".filters :checkbox" ).change(function() {
-						table.api().draw();
-					});
-
 					table = $( "table.table", this ).dataTable( $.extend(
 						true,
 						{
@@ -46,6 +42,27 @@
 							},
 							language: {
 								url: "/bundles/uamdatatables/vendor/datatables-plugins/i18n/" + settings.locale + ".json"
+							}
+							stateLoadParams: function( settings, data ) {
+								$( ".filters input, .filters select", $this ).each(function() {
+									var value = data[ $( this ).attr( "name" ) ];
+
+									if ( $( this ).attr( "type" ) == "checkbox" ) {
+										$( this ).attr( "checked", value );
+									} else {
+										$( this ).val( value );
+									}
+								});
+							},
+							stateSaveParams: function( settings, data ) {
+								$( ".filters input, .filters select", $this ).each(function() {
+									var name = $( this ).attr( "name" ),
+										value = $( this ).attr( "type" ) == "checkbox"
+											? ($( this ).is( ":checked" ) ? $( this ).val() : 0)
+											: $( this ).val();
+
+									data[ name ] = value;
+								});
 							}
 						},
 						settings

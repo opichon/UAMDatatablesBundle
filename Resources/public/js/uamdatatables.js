@@ -17,6 +17,12 @@
 						table.api().draw();
 					});
 
+					$( ".filters input[type='date']" ).change(function( event ) {
+						console.log( this.value );
+						event.stopPropagation();
+						table.api().draw();
+					});
+
 					$(".filters select").change(function(event) {
 						event.stopPropagation();
 						table.api().draw();
@@ -29,9 +35,15 @@
 								data: function( data ) {
 									$( ".filters input, .filters select" ).each(function() {
 										var name = $( this ).attr( "name" ),
-											value = $( this ).attr( "type" ) == "checkbox"
-												? ($( this ).is( ":checked" ) ? $( this ).val() : 0)
-												: $( this ).val();
+											value = $( this ).val();
+
+										if ( "checkbox" == $( this ).attr( "type" ) ) {
+											value = $( this ).is( ":checked" ) ? $( this ).val() : 0;
+										}
+
+										if ("date" == $( this ).attr( "type" ) ) {
+											value = $( this ).attr( "value" );
+										}
 
 										data[name] = value;
 									} );

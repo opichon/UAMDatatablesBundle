@@ -54,7 +54,7 @@
 							},
 							language: {
 								url: "/bundles/uamdatatables/vendor/datatables-plugins/i18n/" + settings.locale + ".json"
-							}
+							},
 							stateLoadParams: function( settings, data ) {
 								$( ".filters input, .filters select", $this ).each(function() {
 									var value = data[ $( this ).attr( "name" ) ];

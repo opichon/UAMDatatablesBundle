@@ -126,7 +126,7 @@ div.dataTables_processing {
 	height: 50px;
 	margin-left: -125px;
 	margin-top: -15px;
-	padding: 14px 0 2px 0;
+	padding: 0.5em 0 2px 0;
 	border: 1px solid #e2b709;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;

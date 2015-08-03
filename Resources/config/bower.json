@@ -3,7 +3,7 @@
   "dependencies": {
   "datatables": "~1.10",
   "datatables-plugins": "*",
-  "mustache": "~2.0"
+  "mustache": "~2.1"
   },
   "overrides": {
     "datatables": {

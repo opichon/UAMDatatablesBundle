@@ -119,8 +119,10 @@ trait EntityManagerTrait
         $offset = $this->getOffset($request);
 
         $entities = $query
-            ->setLimit($limit)
-            ->setOffset($offset)
+            ->_if($limit)
+                ->setLimit($limit)
+                ->setOffset($offset)
+            ->_endIf()
             ->find();
 
         return $this->processEntities($entities, $request);

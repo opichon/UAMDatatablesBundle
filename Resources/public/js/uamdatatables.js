@@ -12,7 +12,12 @@
 				return this.each(function() {
 					var $this = $( this );
 
-					$( ".filters input" ).keyup(function(event) {
+					$( ".filters input" ).keyup(function( event ) {
+						event.stopPropagation();
+						table.api().draw();
+					});
+
+					$( ".filters :checkbox" ).change(function( event ) {
 						event.stopPropagation();
 						table.api().draw();
 					});
@@ -23,7 +28,7 @@
 						table.api().draw();
 					});
 
-					$(".filters select").change(function(event) {
+					$(".filters select").change(function( event ) {
 						event.stopPropagation();
 						table.api().draw();
 					});

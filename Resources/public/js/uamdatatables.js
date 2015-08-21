@@ -47,7 +47,7 @@
 										}
 
 										if ("date" == $( this ).attr( "type" ) ) {
-											value = $( this ).attr( "value" );
+											value = $( this ).val();
 										}
 
 										data[name] = value;

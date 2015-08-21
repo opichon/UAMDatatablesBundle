@@ -1,43 +1,43 @@
 {
-  "name": "uam/datatables-bundle",
-  "dependencies": {
-  "datatables": "~1.10",
-  "datatables-plugins": "*",
-  "mustache": "~2.1"
-  },
-  "overrides": {
-    "datatables": {
-      "main": [
-      "media/css/*",
-      "media/js/*"
-      ]
-    },
-    "datatables-plugins": {
-      "main": [
-        "i18n/*.json",
-        "integration/bootstrap/3/dataTables.bootstrap.css",
-        "integration/bootstrap/3/dataTables.bootstrap.js",
-        "integration/bootstrap/3/dataTables.bootstrap.min.js",
-        "integration/font-awesome/dataTables.fontAwesome.css",
-        "integration/foundation/dataTables.foundation.css",
-        "integration/foundation/dataTables.foundation.js",
-        "integration/foundation/dataTables.foundation.min.js",
-        "integration/foundation/images/*",
-        "integration/jqueryui/dataTables.jqueryui.css",
-        "integration/jqueryui/dataTables.jqueryui.js",
-        "integration/jqueryui/dataTables.jqueryui.min.js",
-        "pagination/*.js",
-        "pagination/jPaginator/*.js"
-      ]
-    },
-    "jquery": {
-      "ignore": true
-    },
-    "mustache": {
-      "main": [
-        "mustache.js",
-        "mustache.min.js"
-      ]
-    }
-  }
+	"name": "uam/datatables-bundle",
+	"dependencies": {
+		"datatables": "~1.10",
+		"datatables-plugins": "*",
+		"mustache": "~2.1"
+	},
+	"overrides": {
+		"datatables": {
+			"main": [
+			"media/css/*",
+			"media/js/*"
+			]
+		},
+		"datatables-plugins": {
+			"main": [
+				"i18n/*.json",
+				"integration/bootstrap/3/dataTables.bootstrap.css",
+				"integration/bootstrap/3/dataTables.bootstrap.js",
+				"integration/bootstrap/3/dataTables.bootstrap.min.js",
+				"integration/font-awesome/dataTables.fontAwesome.css",
+				"integration/foundation/dataTables.foundation.css",
+				"integration/foundation/dataTables.foundation.js",
+				"integration/foundation/dataTables.foundation.min.js",
+				"integration/foundation/images/*",
+				"integration/jqueryui/dataTables.jqueryui.css",
+				"integration/jqueryui/dataTables.jqueryui.js",
+				"integration/jqueryui/dataTables.jqueryui.min.js",
+				"pagination/*.js",
+				"pagination/jPaginator/*.js"
+			]
+		},
+		"jquery": {
+			"ignore": true
+		},
+		"mustache": {
+			"main": [
+				"mustache.js",
+				"mustache.min.js"
+			]
+		}
+	}
 }

@@ -1,6 +1,6 @@
 satis:
     script:
-        - satis symfony2
+        - satis symfony
     type: build
     tags:
         - satis

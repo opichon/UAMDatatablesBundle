@@ -4,6 +4,7 @@ namespace UAM\Bundle\DatatablesBundle\Propel;
 
 use ModelCriteria;
 use PropelCollection;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 trait EntityManagerTrait
@@ -144,15 +145,17 @@ trait EntityManagerTrait
      */
     protected function getFilters(Request $request)
     {
-        if ($type = $this->getFilterType($request)) {
-            return $request->query->get(
-                is_string($type)
-                    ? $type
-                    : $type->getName()
-            );
+        $type = $this->getFilterType($request);
+
+        if (!$type) {
+            return $request->query->get('search')['value'];
         }
 
-        return $request->query->get('search')['value'];
+        $filter = new $type();
+
+        $param = $filter->getBlockPrefix();
+
+        return $request->query->get($param);
     }
 
 

@@ -1,9 +1,9 @@
 {
-	"name": "uam/datatables-bundle",
+	"name": "uam-datatables-bundle",
 	"dependencies": {
 		"datatables": "~1.10",
 		"datatables-plugins": "*",
-		"mustache": "~2.1"
+		"mustache": "~2.2"
 	},
 	"overrides": {
 		"datatables": {

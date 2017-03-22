@@ -3,11 +3,8 @@
 namespace UAM\Bundle\DatatablesBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Intl\Intl;
 
 class ConvertTranslationFilesCommand extends ContainerAwareCommand
@@ -34,7 +31,7 @@ class ConvertTranslationFilesCommand extends ContainerAwareCommand
 
             $filename = $this->getNewFilename($entry);
 
-            $output->writeln(sprintf("Processing %s to %s", $entry, $filename));
+            $output->writeln(sprintf('Processing %s to %s', $entry, $filename));
 
             $path = sprintf('%s/%s', $from_dir->path, $entry);
 
@@ -151,7 +148,7 @@ class ConvertTranslationFilesCommand extends ContainerAwareCommand
     protected function getIgnoredKeys()
     {
         return array(
-            'sUrl'
+            'sUrl',
         );
     }
 
@@ -221,7 +218,7 @@ class ConvertTranslationFilesCommand extends ContainerAwareCommand
             'Ukranian' => 'uk',
             'Urdu' => 'ur',
             'Uzbek' => 'uz',
-            'Vietnamese' => 'vi'
+            'Vietnamese' => 'vi',
         );
     }
 }

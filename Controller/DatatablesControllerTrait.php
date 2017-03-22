@@ -1,9 +1,10 @@
 <?php
 
 /**
- * @copyright 2015 United Asian Management Limited. All rights reserved.
+ * @copyright 2015 United Asian Management Limited. All rights reserved
  * @license MIT
  */
+
 namespace UAM\Bundle\DatatablesBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -21,10 +22,12 @@ trait DatatablesControllerTrait
      * Index action. Displays the table structure (headers and empty body).
      *
      * @param Request $request Thecurrent request
-     * @return Array An array of template parameters. These include:
-     * * `filter`: If {@see DatatablesEnabledControllerTrait::getFilterType()} returns a non-null value, the form based on this type
-     * * If {@see DatatablesEnabledControllerTrait::getExtraTemplateParameters()} returns a non-empty array, these parameters are
-     * included
+     *
+     * @return array An array of template parameters. These include:
+     *               * `filter`: If {@see DatatablesEnabledControllerTrait::getFilterType()} returns a non-null value, the form based on this type
+     *               * If {@see DatatablesEnabledControllerTrait::getExtraTemplateParameters()} returns a non-empty array, these parameters are
+     *               included
+     *
      * @uses DatatablesEnabledControllerTrait::getFilterType()
      * @uses DatatablesEnabledControllerTrait::getExtraTemplateParameters()
      */
@@ -48,7 +51,9 @@ trait DatatablesControllerTrait
      * parameters passed to the template in the `index` and `list` actions.
      *
      * @param Request $request the current request
-     * @return Array additional parameters to be passed to the template
+     *
+     * @return array additional parameters to be passed to the template
+     *
      * @see DatablesEnabledControllerTrait::indexAction()
      * @see DatablesEnabledControllerTrait::listAction()
      */
@@ -63,7 +68,9 @@ trait DatatablesControllerTrait
      * named `filter`.
      *
      * @param Request $request the current request
+     *
      * @return Symfony\Component\Form\FormInterface|null a form
+     *
      * @uses EntityManagerInterface::getFilterType
      */
     protected function getFilter(Request $request)

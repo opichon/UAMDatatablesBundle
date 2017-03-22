@@ -2,23 +2,21 @@
 
 namespace UAM\Bundle\DatatablesBundle\DependencyInjection;
 
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class UAMDatatablesExtension extends Extension implements PrependExtensionInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function prepend(ContainerBuilder $container)
     {
@@ -42,21 +40,21 @@ class UAMDatatablesExtension extends Extension implements PrependExtensionInterf
                         'inputs' => array(
                             'bundles/uamdatatables/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
                             'bundles/uamdatatables/css/uamdatatables.css',
-                        )
+                        ),
                     ),
                     'uamdatatables_bootstrap_fa_css' => array(
                         'inputs' => array(
                             'bundles/uamdatatables/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
                             'bundles/uamdatatables/vendor/datatables-plugins/integration/font-awesome/dataTables.fontAwesome.css',
                             'bundles/uamdatatables/css/uamdatatables.css',
-                        )
+                        ),
                     ),
                     'uamdatatables_bootstrap_js' => array(
-                    	'inputs' => array(
+                        'inputs' => array(
                             'bundles/uamdatatables/vendor/datatables/media/js/jquery.dataTables.min.js',
                             'bundles/uamdatatables/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js',
                             'bundles/uamdatatables/js/uamdatatables.js',
-                		)
+                        ),
                     ),
                     'uamdatatables_bootstrap_mustache_js' => array(
                         'inputs' => array(
@@ -64,9 +62,9 @@ class UAMDatatablesExtension extends Extension implements PrependExtensionInterf
                             'bundles/uamdatatables/vendor/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js',
                             'bundles/uamdatatables/vendor/mustache/mustache.min.js',
                             'bundles/uamdatatables/js/uamdatatables.js',
-                        )
-                    )
-                )
+                        ),
+                    ),
+                ),
             )
         );
     }

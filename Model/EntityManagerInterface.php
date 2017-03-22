@@ -23,6 +23,7 @@ interface EntityManagerInterface
      * template to render the form's widgets.
      *
      * @param Request $request the current request
+     *
      * @return Symfony\Component\Form\FormTypeInterface|null the form type for creating filters
      * @used0-by DatatablesEnabledControllerTrait::getFilter
      */

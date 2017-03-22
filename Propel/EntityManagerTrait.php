@@ -4,22 +4,22 @@ namespace UAM\Bundle\DatatablesBundle\Propel;
 
 use ModelCriteria;
 use PropelCollection;
-use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 trait EntityManagerTrait
 {
     /**
-     * Returns the Propel query to be used to retrieve records from the database,
+     * Returns the Propel query to be used to retrieve records from the database,.
      *
      * @param Request $request the current request
+     *
      * @return ModelCriteria The Propel query to use for retrieving records in the database
      */
     abstract protected function getQuery(Request $request);
 
     /**
      * Defines the conditions for filtering the database records. This method
-     * must return an array of SQL conditions indexed by filter name. For example:
+     * must return an array of SQL conditions indexed by filter name. For example:.
      *
      * ```
      *    return array(
@@ -37,14 +37,16 @@ trait EntityManagerTrait
      * with the query definedin the getListQuery method.
      *
      * @param Request $request The current request
-     * @return Array the search conditions
+     *
+     * @return array the search conditions
+     *
      * @see DatatablesEnabledControllerTrait::search()
      */
     abstract protected function getSearchColumns(Request $request);
 
     /**
      * Defines the conditions for sorting the database records. The return value must be
-     * an array of column names indexed by column number. For example:
+     * an array of column names indexed by column number. For example:.
      *
      * ```
      *     return array(
@@ -61,7 +63,9 @@ trait EntityManagerTrait
      * are expected to be consistent with the Propel query defined in getListQuery.
      *
      * @param Request $request the current request
-     * @return Array the search conditions
+     *
+     * @return array the search conditions
+     *
      * @see DatablesEnabledControllerTrait::getSortOrder()
      */
     abstract protected function getSortColumns(Request $request);
@@ -71,14 +75,16 @@ trait EntityManagerTrait
      * must return an array.
      *
      * @param Request $request the current request
-     * @return Array the default sort order
+     *
+     * @return array the default sort order
+     *
      * @see DatatablesEnabledControllerTrait::getSortOrder()
      * @see DatatablesEnabledControllerTrait::sort()
      */
     abstract protected function getDefaultSortOrder(Request $request);
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getTotalCount(Request $request)
     {
@@ -88,7 +94,7 @@ trait EntityManagerTrait
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getFilteredCount(Request $request)
     {
@@ -103,7 +109,7 @@ trait EntityManagerTrait
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getEntities(Request $request)
     {
@@ -130,7 +136,7 @@ trait EntityManagerTrait
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getFilterType(Request $request)
     {
@@ -141,7 +147,8 @@ trait EntityManagerTrait
      * Extracts the filters from the request's query parameters.
      *
      * @param Request $request the current request
-     * @return Array the query parameters containng the filters
+     *
+     * @return array the query parameters containng the filters
      */
     protected function getFilters(Request $request)
     {
@@ -158,11 +165,11 @@ trait EntityManagerTrait
         return $request->query->get($param);
     }
 
-
     /**
      * Defines the limit for the Propel query.
      *
      * @param Request $request the current request
+     *
      * @return int the propel query limit
      */
     protected function getLimit(Request $request)
@@ -180,6 +187,7 @@ trait EntityManagerTrait
      * Defines the offset for the Propel query.
      *
      * @param Request $request the current request
+     *
      * @return int the propel query offset
      */
     protected function getOffset(Request $request)
@@ -194,6 +202,7 @@ trait EntityManagerTrait
      * Returns the default limit.
      *
      * @param Request $request the current request
+     *
      * @return int 10
      */
     protected function getDefaultLimit(Request $request)
@@ -206,6 +215,7 @@ trait EntityManagerTrait
      * to avoid overburdening the server.
      *
      * @param Request $request the current request
+     *
      * @return int 100
      */
     protected function getMaxLimit(Request $request)
@@ -217,6 +227,7 @@ trait EntityManagerTrait
      * Returns the default offset value.
      *
      * @param Request $request the current request
+     *
      * @return int 0;
      */
     protected function getDefaultOffset(Request $request)
@@ -230,8 +241,9 @@ trait EntityManagerTrait
      * query has been run and before the entities are passed to the template.
      *
      * @param PropelCollection $entities the result of the propel query
-     * @param Request $request the current request
-     * @return PropelCollection|Array the processed entities
+     * @param Request          $request  the current request
+     *
+     * @return PropelCollection|array the processed entities
      */
     protected function processEntities(PropelCollection $entities, Request $request)
     {
@@ -242,8 +254,8 @@ trait EntityManagerTrait
      * Filters the database records. This method should be considered final for
      * all practical purposes.
      *
-     * @param ModelCriteria $query the Propel query
-     * @param Request $request the current request
+     * @param ModelCriteria $query   the Propel query
+     * @param Request       $request the current request
      */
     protected function search(ModelCriteria $query, Request $request)
     {
@@ -265,7 +277,7 @@ trait EntityManagerTrait
 
                 while (is_array($values) && array_key_exists($items[$i], $values)) {
                     $values = $values[$items[$i]];
-                    $i++;
+                    ++$i;
                 }
 
                 if (is_array($values)) {
@@ -311,8 +323,9 @@ trait EntityManagerTrait
      * Sorts the database records. This method should be considered final for
      * all practical purposes.
      *
-     * @param ModelCriteria $query the Propel query
-     * @param Request $request the current request
+     * @param ModelCriteria $query   the Propel query
+     * @param Request       $request the current request
+     *
      * @return ModelCriteria the Propel query
      */
     protected function sort(ModelCriteria $query, Request $request)
@@ -333,7 +346,8 @@ trait EntityManagerTrait
      * all practical purposes.
      *
      * @param Request $request the current request
-     * @return Array the sort order
+     *
+     * @return array the sort order
      */
     protected function getSortOrder(Request $request)
     {

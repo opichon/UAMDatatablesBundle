@@ -1,9 +1,10 @@
 <?php
 
 /**
- * @copyright 2015 United Asian Management Limited. All rights reserved.
+ * @copyright 2015 United Asian Management Limited. All rights reserved
  * @license MIT
  */
+
 namespace UAM\Bundle\DatatablesBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

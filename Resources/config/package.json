@@ -1,4 +1,8 @@
 {
+	"name": "uam-datatables-bundle",
+	"scripts": {
+		"gulp": "gulp"
+	},
 	"devDependencies": {
 		"gulp": "^3.9",
 		"gulp-bower": "^0.0.10",
